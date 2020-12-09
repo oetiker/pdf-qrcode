@@ -1,0 +1,67 @@
+name: Unit Tests
+
+on: 
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'    
+
+jobs:
+
+  build:
+    
+    strategy:
+      matrix:
+        os:
+          - ubuntu-16.04
+          - ubuntu-18.04
+          # Alien::MSYS fails to install on windows
+          # - windows-latest
+
+        perl:
+          - '5.22'
+          - '5.26'
+          - '5.30'
+
+        exclude:
+          - os: ubuntu-18.04
+            perl: '5.22'
+          - os: windows-latest
+            perl: '5.22'
+          - os: windows-latest
+            perl: '5.26'
+
+      fail-fast: false
+
+    name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
+    
+    runs-on: ${{ matrix.os }}
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Setup perl
+      uses: shogo82148/actions-setup-perl@v1
+      with:
+        perl-version: ${{ matrix.perl }}
+
+    - name: Cache
+      id: cpan-cache
+      uses: actions/cache@v1
+      with:
+        path: 3rd
+        key: ${{ matrix.os }}-cpan-${{ matrix.perl }}-${{ hashFiles('Makefile.PL') }}
+        
+    - name: Prepare
+      run: perl Makefile.PL
+    
+    - name: Make 3rd Party
+      if: steps.cpan-cache.outputs.cache-hit != 'true'
+      run: make 3rd
+ 
+    - name: Run Tests
+      run: make test
