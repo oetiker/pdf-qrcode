@@ -6,7 +6,7 @@ our $VERSION = '0.1.0';
 
 =begin markdown
 
-![](https://github.com/oposs/pdf-qrcode/workflows/Unit%20Tests/badge.svg?branch=master)
+![](https://github.com/oetiker/pdf-qrcode/workflows/Unit%20Tests/badge.svg?branch=master)
 
 =end markdown
 
@@ -30,7 +30,7 @@ PDF::QRCode - add qrcode method to a PDF::API2 or PDF::Builder.
 =head1 DESCRIPTION
 
 The L<PDF::QRCode> module monkey patches the 'qrcode' method into the
-L<PDF::API2::Content> class. So that you can use it directly from there.
+L<PDF::API2::Content> or L<PDF::Builder::Content> class, so that you can use it directly from there. See the example above
  
 =head2 $gfx->qrcode(%cfg)
 

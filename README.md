@@ -1,4 +1,4 @@
-![](https://github.com/oposs/pdf-qrcode/workflows/Unit%20Tests/badge.svg?branch=master)
+![](https://github.com/oetiker/pdf-qrcode/workflows/Unit%20Tests/badge.svg?branch=master)
 
 # NAME
 
@@ -21,7 +21,7 @@ $pdf->save;
 # DESCRIPTION
 
 The [PDF::QRCode](https://metacpan.org/pod/PDF%3A%3AQRCode) module monkey patches the 'qrcode' method into the
-[PDF::API2::Content](https://metacpan.org/pod/PDF%3A%3AAPI2%3A%3AContent) class. So that you can use it directly from there.
+[PDF::API2::Content](https://metacpan.org/pod/PDF%3A%3AAPI2%3A%3AContent) or [PDF::Builder::Content](https://metacpan.org/pod/PDF%3A%3ABuilder%3A%3AContent) class, so that you can use it directly from there. See the example above
 
 ## $gfx->qrcode(%cfg)
 
