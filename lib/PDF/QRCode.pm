@@ -6,7 +6,7 @@ our $VERSION = '0.1.0';
 
 =begin markdown
 
-![](https://github.com/oetiker/pdf-qrcode/workflows/Unit%20Tests/badge.svg?branch=master)
+![](https://github.com/oetiker/pdf-qrcode/workflows/Unit%20Tests/badge.svg?branch=main)
 
 =end markdown
 
