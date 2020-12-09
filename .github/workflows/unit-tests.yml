@@ -16,7 +16,6 @@ jobs:
       matrix:
         os:
           - ubuntu-20.04
-          - windows-latest
 
         perl:
           - '5.22'
@@ -55,6 +54,9 @@ jobs:
         path: 3rd
         key: ${{ matrix.os }}-cpan-${{ matrix.perl }}-${{ hashFiles('Makefile.PL') }}
         
+    - name: Install libqrencode
+      run: sudo apt install libqrencode-dev
+
     - name: Prepare
       run: perl Makefile.PL
     
